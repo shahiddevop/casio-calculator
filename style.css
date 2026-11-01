@@ -1,0 +1,504 @@
+:root {
+  --body-pink: #dfb4bd;
+  --body-shadow: #b88591;
+  --body-highlight: #eed3d9;
+  --bezel-color: #b68490;
+  --lcd-bg: #7a9a72;
+  --lcd-fg: #111f0f;
+  --lcd-faint: #6c8964;
+  --btn-mauve: #714b69;
+  --btn-mauve-active: #54334e;
+  --btn-white: #f6f6f8;
+  --btn-white-active: #dddddf;
+  --btn-green: #5aa67d;
+  --btn-green-active: #407b5c;
+  --btn-shadow: #9e6d78;
+  --label-yellow: #8f6300;
+  --label-red: #b81b2a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: radial-gradient(circle at center, #2e2e33 0%, #18181a 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  padding: clamp(8px, 2vh, 20px) clamp(6px, 2vw, 20px);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Responsive Calculator Chassis */
+.calculator {
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(175deg, #e4bcc4 0%, var(--body-pink) 60%, #d8aab4 100%);
+  border-radius: clamp(18px, 4vw, 26px);
+  box-shadow: 
+    0 20px 45px rgba(0, 0, 0, 0.65),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 2px 2px var(--body-highlight),
+    inset 0 -3px 4px var(--body-shadow);
+  padding: clamp(12px, 2.5vh, 18px) clamp(10px, 3.5vw, 20px) clamp(14px, 3vh, 24px) clamp(10px, 3.5vw, 20px);
+  border: 1px solid #c998a4;
+  position: relative;
+  margin: auto;
+  transition: all 0.2s ease-out;
+}
+
+/* Top Brand & Solar Bar */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: clamp(5px, 1.2vh, 8px);
+}
+
+.brand-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-casio {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: clamp(17px, 4.5vw, 21px);
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+
+.model-name {
+  color: #ffffff;
+  font-size: clamp(9px, 2.4vw, 11px);
+  font-style: italic;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.vpam-tag {
+  color: #f7e6e9;
+  font-size: clamp(7px, 1.9vw, 8.5px);
+  font-weight: bold;
+  letter-spacing: 0.4px;
+}
+
+.solar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.two-way-power {
+  color: #f7e6e9;
+  font-size: clamp(6.5px, 1.7vw, 8px);
+  font-weight: bold;
+  margin-bottom: 3px;
+  letter-spacing: 0.3px;
+}
+
+.solar-panel {
+  width: clamp(90px, 25vw, 112px);
+  height: clamp(20px, 3.5vh, 24px);
+  background: #141417;
+  border-radius: 3px;
+  border: 1.5px solid #735058;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8), 0 1px 1px rgba(255,255,255,0.2);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.solar-cell {
+  flex: 1;
+  border-right: 1px solid #2b2b33;
+}
+.solar-cell:last-child {
+  border-right: none;
+}
+
+.solar-glare {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+}
+
+.edition-tag {
+  color: #eed6db;
+  font-size: clamp(7px, 1.9vw, 8.5px);
+  font-style: italic;
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+/* LCD Screen Display */
+.lcd-bezel {
+  background: var(--bezel-color);
+  border-radius: clamp(7px, 2vw, 9px);
+  padding: clamp(4px, 1vh, 6px);
+  box-shadow: 
+    inset 0 3px 6px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(255, 255, 255, 0.4);
+  border: 1px solid #946470;
+  margin-bottom: clamp(8px, 1.8vh, 12px);
+}
+
+.lcd-screen {
+  background: var(--lcd-bg);
+  border-radius: 5px;
+  height: clamp(82px, 14vh, 104px);
+  padding: 4px clamp(6px, 2vw, 10px) clamp(5px, 1.2vh, 8px) clamp(6px, 2vw, 10px);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.35);
+  border: 1px solid #587550;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  font-family: 'Consolas', 'Lucida Console', monospace;
+}
+
+.lcd-status-bar {
+  display: flex;
+  gap: clamp(5px, 1.8vw, 10px);
+  font-size: clamp(8.5px, 2.2vw, 10.5px);
+  font-weight: bold;
+  color: var(--lcd-faint);
+  line-height: 1;
+  height: 14px;
+}
+
+.lcd-status-item.active {
+  color: var(--lcd-fg);
+  font-weight: 900;
+}
+
+.lcd-status-spacer {
+  flex: 1;
+}
+
+.lcd-expr-line {
+  font-size: clamp(15px, 4vw, 19px);
+  font-weight: bold;
+  color: var(--lcd-fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: clamp(16px, 3vh, 20px);
+  background: var(--lcd-fg);
+  animation: blink 1s step-start infinite;
+  margin-left: 1px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.lcd-result-line {
+  font-size: clamp(19px, 5.5vw, 25px);
+  font-weight: bold;
+  color: var(--lcd-fg);
+  text-align: right;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Keypad Section */
+.keypad-container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3px, 0.8vh, 5px);
+}
+
+/* Row 1 & 2: Top Control Section with Center D-Pad */
+.top-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr clamp(68px, 18vw, 90px) 1fr 1fr;
+  align-items: center;
+  row-gap: clamp(3px, 0.8vh, 5px);
+  column-gap: clamp(5px, 1.5vw, 8px);
+  margin-bottom: clamp(2px, 0.6vh, 4px);
+}
+
+.dpad-container {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  position: relative;
+  width: clamp(66px, 18vw, 86px);
+  height: clamp(66px, 18vw, 86px);
+  margin: 0 auto;
+}
+
+.dpad-body {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #7a5373 0%, var(--btn-mauve) 70%, #4a2c45 100%);
+  border: 1.5px solid #55334f;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  position: relative;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.dpad-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(25px, 6.5vw, 32px);
+  height: clamp(25px, 6.5vw, 32px);
+  border-radius: 50%;
+  background: #54314e;
+  border: 1px solid #7c5576;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dec8d6;
+  font-size: clamp(5px, 1.2vw, 6.5px);
+  font-weight: bold;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.5);
+  pointer-events: none;
+}
+
+.dpad-btn {
+  position: absolute;
+  color: #ffffff;
+  font-size: clamp(9px, 2.2vw, 11px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.05s ease;
+  touch-action: manipulation;
+}
+
+.dpad-btn:active {
+  transform: scale(0.9);
+  color: #ffdeeb;
+}
+
+.dpad-up    { top: 2px; left: 50%; transform: translateX(-50%); width: 28px; height: 19px; }
+.dpad-down  { bottom: 2px; left: 50%; transform: translateX(-50%); width: 28px; height: 19px; }
+.dpad-left  { left: 2px; top: 50%; transform: translateY(-50%); width: 19px; height: 28px; }
+.dpad-right { right: 2px; top: 50%; transform: translateY(-50%); width: 19px; height: 28px; }
+
+/* Button Cell with Secondary Labels */
+.btn-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.labels-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 2px;
+  height: clamp(9px, 1.5vh, 12px);
+  font-size: clamp(6px, 1.4vw, 7.5px);
+  font-weight: bold;
+  line-height: clamp(9px, 1.5vh, 12px);
+  overflow: hidden;
+}
+
+.lbl-shift {
+  color: var(--label-yellow);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.lbl-alpha {
+  color: var(--label-red);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.lbl-center {
+  text-align: center;
+  width: 100%;
+}
+
+/* Physical Button Styles */
+button.key {
+  width: 100%;
+  height: clamp(26px, 4.2vh, 31px);
+  border-radius: clamp(5px, 1.3vw, 7px);
+  border: 1px solid;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: clamp(10px, 2.3vw, 12px);
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: transform 0.04s ease, box-shadow 0.04s ease;
+  touch-action: manipulation;
+}
+
+button.key:active {
+  transform: translateY(2px);
+}
+
+/* Button Color Themes */
+button.key-mauve {
+  background: linear-gradient(180deg, #7b5373 0%, var(--btn-mauve) 100%);
+  color: #ffffff;
+  border-color: #55334f;
+  box-shadow: 0 3px 0 var(--btn-shadow), 0 3px 4px rgba(0,0,0,0.25);
+}
+button.key-mauve:active {
+  background: var(--btn-mauve-active);
+  box-shadow: 0 1px 0 var(--btn-shadow), 0 1px 2px rgba(0,0,0,0.3);
+}
+
+button.key-white {
+  background: linear-gradient(180deg, #ffffff 0%, var(--btn-white) 100%);
+  color: #1a1a1c;
+  border-color: #c0c0c6;
+  box-shadow: 0 3px 0 var(--btn-shadow), 0 3px 4px rgba(0,0,0,0.25);
+}
+button.key-white:active {
+  background: var(--btn-white-active);
+  box-shadow: 0 1px 0 var(--btn-shadow), 0 1px 2px rgba(0,0,0,0.3);
+}
+
+button.key-green {
+  background: linear-gradient(180deg, #6ec093 0%, var(--btn-green) 100%);
+  color: #ffffff;
+  border-color: #3b7454;
+  box-shadow: 0 3px 0 var(--btn-shadow), 0 3px 4px rgba(0,0,0,0.25);
+  font-size: clamp(11px, 2.5vw, 13px);
+}
+button.key-green:active {
+  background: var(--btn-green-active);
+  box-shadow: 0 1px 0 var(--btn-shadow), 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Shape variants */
+button.key-oval {
+  border-radius: 13px;
+  height: clamp(22px, 3.5vh, 27px);
+  font-size: clamp(8.5px, 1.9vw, 10px);
+}
+
+/* Scientific Function Rows (6 Columns) */
+.grid-6col {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: clamp(4px, 1.2vw, 7px);
+  row-gap: clamp(3px, 0.7vh, 5px);
+  margin-bottom: clamp(3px, 0.8vh, 6px);
+}
+
+.grid-6col button.key {
+  height: clamp(25px, 4vh, 30px);
+  font-size: clamp(9.5px, 2.2vw, 12px);
+}
+
+/* Numeric Keypad Rows (5 Columns) */
+.grid-5col {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: clamp(5px, 1.5vw, 8px);
+  row-gap: clamp(4px, 0.9vh, 6px);
+}
+
+.grid-5col button.key {
+  height: clamp(33px, 5.2vh, 42px);
+  font-size: clamp(13px, 3.2vw, 16px);
+}
+
+.grid-5col button.key-sm {
+  font-size: clamp(10.5px, 2.5vw, 13px);
+}
+
+/* -------------------------------------------------------------------------
+   Extra Responsive Media Breakpoints (Short screens, Mobile, Landscape)
+   ------------------------------------------------------------------------- */
+
+/* Small Mobile Screens (width <= 380px) */
+@media (max-width: 380px) {
+  body {
+    padding: 4px;
+  }
+  .calculator {
+    border-radius: 16px;
+    padding: 10px 8px 14px 8px;
+  }
+  .labels-row {
+    font-size: 5.5px;
+  }
+  .top-controls {
+    grid-template-columns: 1fr 1fr 62px 1fr 1fr;
+  }
+}
+
+/* Height Constraint (laptops with 768px height or landscape phones) */
+@media (max-height: 720px) {
+  body {
+    padding: 4px;
+  }
+  .calculator {
+    padding-top: 8px;
+    padding-bottom: 12px;
+  }
+  .lcd-screen {
+    height: 78px;
+  }
+  .lcd-expr-line {
+    font-size: 15px;
+  }
+  .lcd-result-line {
+    font-size: 20px;
+  }
+  .keypad-container {
+    gap: 3px;
+  }
+  .grid-5col button.key {
+    height: 33px;
+  }
+  .grid-6col button.key {
+    height: 25px;
+  }
+}
+
+@media (max-height: 600px) {
+  .calculator {
+    transform: scale(0.88);
+    transform-origin: top center;
+    margin-bottom: -50px;
+  }
+}
